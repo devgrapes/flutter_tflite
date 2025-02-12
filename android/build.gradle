@@ -1,3 +1,7 @@
+plugins {
+    id 'com.android.library'
+}
+
 group 'sq.flutter.tflite'
 version '1.0-SNAPSHOT'
 
@@ -8,35 +12,26 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.1' // Update to a newer version
+        classpath 'com.android.tools.build:gradle:8.2.1' // Use latest stable version
     }
-}
-
-plugins {
-    id 'com.android.library'
 }
 
 android {
-    namespace 'sq.flutter.tflite' // Required for newer Gradle versions
-    compileSdk 34 // Update to latest stable version
+    namespace 'sq.flutter.tflite' // Required for Gradle 8+
+    compileSdk 34
 
     defaultConfig {
-        minSdk 21 // Increase for better compatibility
+        minSdk 21
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
-    buildFeatures {
-        prefab true // Required for TensorFlow Lite C++ dependencies if needed
-    }
-
     lint {
-        baseline = file("lint-baseline.xml")
         checkReleaseBuilds false
         disable 'InvalidPackage'
     }
+}
 
-    dependencies {
-        implementation 'org.tensorflow:tensorflow-lite:2.13.0'
-        implementation 'org.tensorflow:tensorflow-lite-gpu:2.13.0'
-    }
+dependencies {
+    implementation 'org.tensorflow:tensorflow-lite:2.13.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.13.0'
 }
