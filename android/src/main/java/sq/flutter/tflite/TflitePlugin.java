@@ -93,7 +93,7 @@ public class TflitePlugin implements MethodCallHandler {
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
-    print("Method Call Received "+call.method);
+  
     if (call.method.equals("loadModel")) {
       try {
         String res = loadModel((HashMap) call.arguments);
